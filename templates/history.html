@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Pengecekan Kepadatan Lalu Lintas{% endblock %}
+
+{% block content %}
+    <div class="home">
+        <div class="container-title">
+            <h2>Tabel Pengecekan Kepadatan Lalu Lintas</h2>
+        </div>
+
+        <div class="table-container">
+            <div class="table">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Tanggal</th>
+                            <th>Jam</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in datas %}
+                            <tr>
+                                <td>{{ data.No }}</td>
+                                <td>{{ data.Tanggal }}</td>
+                                <td>{{ data.Jam }}</td>
+                                <td>{{ data.Status }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

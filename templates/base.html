@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .base-layout{
+            display: flex;
+        }
+
+        /* SIDENAVBAR CSS */
+        .sidenavbar {
+            width: 18%;
+            background-color: rgb(1, 1, 34);
+            color: #fff;
+            padding: 15px;
+        }
+
+        .sidenavbar ul {
+            list-style: none;
+        }
+
+        .sidenavbar li a{
+            text-decoration: none;
+            font-size: 15px;
+            color: white;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidenavbar li {
+            text-decoration: none;
+            padding: 0px 10px 0px 10px;
+            margin-bottom: 20px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .sidenavbar li.active {
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        
+        /* CONTENT CSS */
+        .content {
+            width: 82%;
+            display: flex;
+            min-height: 100vh;
+            background: #f0f5fd;
+        }
+
+        /* HOME CSS */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .home{
+            width: 100%;
+            padding: 15px;
+        }
+
+        .home-position{
+            display: flex;
+            gap: 30px;
+        }
+
+        .container-title{
+            width: 100%;
+            height: 70px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container-image {
+            width: 100%;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        .container-total{
+            height: 309px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .button-image{
+            width: 100%;
+            height: 50px;
+            background-color: rgb(1, 1, 34);
+            color: white;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all .3s ease;
+        }
+
+        .button-image:hover{
+            background-color: rgb(3, 3, 114);
+        }
+
+        .image-input{
+            width: 100%;
+            height: 400px;
+            margin-bottom: 15px;
+        }
+
+        .image-style{
+            border-radius: 15px;
+        }
+
+        .img-area {
+            position: relative;
+            width: 100%;
+            height: 80px;
+            background: rgb(192, 192, 192);
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            content: attr(data-img);
+            cursor: pointer;
+            transition: all .3s ease;
+        }
+
+        .img-area:hover {
+            background: rgb(150, 149, 149);
+        }
+
+        .img-area input{
+            position: relative;
+            width: 100%;
+            height: 80px;
+            display: none;
+        }
+
+        .img-area label{
+            position: relative;
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .img-area img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 100;
+        }
+        
+        .select-image {
+            display: block;
+            width: 60%;
+            height: 100px;
+            padding: 16px 0;
+            border-radius: 15px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: all .3s ease;
+            justify-content: center; 
+            display: flex; 
+            align-items: center;
+        }
+
+        /* HISTORY CSS */
+
+        .table-container {
+            width: 100%;
+            height: 638px;
+            background: white;
+            border-radius: 15px;
+        }
+
+        .table{
+            padding: 0px 20px 0px 20px;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+            text-align: center;
+            background: white;
+        }
+
+        .styled-table th {
+            padding: 25px 15px;
+            border-bottom: none;
+            background: white;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .styled-table td {
+            padding: 20px 15px;
+            border-bottom: none;
+        }
+
+        .styled-table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .table-container{
+            overflow: auto;
+        }
+
+        .table-container::-webkit-scrollbar {
+            display: none;
+        }
+
+    </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="style.css">
+        <title>{% block title %}Pengecekan Kepadatan Lalu Lintas{% endblock %}</title>
+    </head>
+
+    <body>
+        <div class="base-layout">
+            {% include 'sidenavbar.html' %}
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

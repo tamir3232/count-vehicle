@@ -3,62 +3,58 @@ import cv2
 from django.http import HttpResponse
 import numpy as np
 import glob
+import base64
 from vehicle_detector import VehicleDetector
 
-def index(request):
-    return render(request,'index.html')
+def landing(request):
+    return render(request, 'landingpage.html')
+
+def daftar(request):
+    return render(request, 'daftar.html')
+
+def home(request):
+    return render(request, 'home.html')
+
+def history(request):
+    data = [
+        {'No': 1, 'Tanggal': '2022-02-09', 'Jam': '12:30', 'Status': 'Lancar'},
+        {'No': 2, 'Tanggal': '2022-02-09', 'Jam': '13:45', 'Status': 'Padat'},
+        # Add more data as needed
+    ]
+
+    context = {'datas': data}
+
+    return render(request, 'history.html', context)
 
 def count(request):
-    status = "Tidak Padat"
+    status = "Lancar"
+    image_data = None
 
-    # Load Veichle Detector
+    # Load Vehicle Detector
     vd = VehicleDetector()
 
     # Load images from a folder
-    # images_data = request.files['image'].read() 
     image_file = request.FILES.get('image')
     if image_file:
-            # Membaca data gambar
-            images_data = image_file.read()
+        # Membaca data gambar
+        images_data = image_file.read()
 
-            # Menggunakan OpenCV untuk membaca gambar
-            nparr = np.frombuffer(images_data, np.uint8)
-            img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        # Menggunakan OpenCV untuk membaca gambar
+        nparr = np.frombuffer(images_data, np.uint8)
+        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-            # Load Veichle Detector
-            vd = VehicleDetector()
+        # Load Vehicle Detector
+        vd = VehicleDetector()
 
-            # Deteksi kendaraan pada gambar
-            vehicle_boxes = vd.detect_vehicles(img)
-            vehicle_count = len(vehicle_boxes)
-            
-            if vehicle_count>10:
-                status ="Padat"
+        # Deteksi kendaraan pada gambar
+        vehicle_boxes = vd.detect_vehicles(img)
+        vehicle_count = len(vehicle_boxes)
 
-            print("Total current count", vehicle_count)
+        if vehicle_count > 10:
+            status = "Padat"
 
-            return render(request,'hasil.html', {'prediction' : status, 'count': vehicle_count})
-        
-    return HttpResponse("<h1>Formulir tidak dikirim dengan metode POST atau file gambar tidak ada</h1>")
+        # Encode the image to base64
+        _, buffer = cv2.imencode('.png', img)
+        image_data = base64.b64encode(buffer).decode('utf-8')
 
-
-
-    # # Loop through all the images
-    # print("Img path", images_data)
-    # img = cv2.imread(images_data)
-
-    # vehicle_boxes = vd.detect_vehicles(img)
-    # vehicle_count = len(vehicle_boxes)
-    # print(vehicle_count)
-    # Update total count
-    # vehicles_folder_count += vehicle_count
-
-    # for box in vehicle_boxes:
-    #     x, y, w, h = box
-
-    #     cv2.rectangle(img, (x, y), (x + w, y + h), (25, 0, 180), 3)
-
-    #     cv2.putText(img, "Vehicles: " + str(vehicle_count), (20, 50), 0, 2, (100, 200, 0), 3)
-
-
-    print("Total current count", vehicle_count)
+    return render(request, 'home.html', {'prediction': status, 'count': vehicle_count, 'image_data': image_data})

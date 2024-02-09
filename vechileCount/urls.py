@@ -17,17 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponse
+from django.shortcuts import redirect
 
 from . import views
 
-def index(request):
-    return HttpResponse("<h1> ini adalah home</h1>")
-
-
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("",views.index),
-    path('test/',views.count),
-    
+    path("",views.landing, name='landing'),
+    path("daftar",views.daftar, name='daftar'),
+    path("base", lambda request: redirect('home'), name='base'),
+    path("home",views.home, name='home'),
+    path("history",views.history, name='history'),
+    path('test',views.count),
 ]

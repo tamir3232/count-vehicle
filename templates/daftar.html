@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+
+        }
+
+        .image {
+            width: 100%;
+            height: 600px;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #f0f5fd;
+        }
+
+        .content {
+            color: black;
+            z-index: 1;
+            border-radius: 15px;
+            background-color: white;
+            height: 600px;
+            width: 1300px;
+        }
+
+        .layout {
+            display: flex;
+            height: 100%;
+        }
+
+        .right-side{
+            width: 50%;
+            height: 100%;
+        }
+
+        .left-side{
+            width: 50%;
+            
+        }
+
+        .form{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-register{
+            padding: 20px;
+        }
+
+        .form-register h1{
+            text-align: center;
+        }
+
+        .form-register {
+            width: 60%;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .input-register{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .input-register input{
+            width: 100%;
+            height: 35px;
+            border-radius: 10px;
+            padding: 0px 10px 0px 10px;
+        }
+
+        .form-input a{
+            text-decoration: none;
+        }
+
+        .button-register-position{
+            display: flex;
+            justify-content: center;
+            margin-top: 35px;
+        }
+
+        .button-register{
+            width: 150px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: rgb(5, 5, 185);
+            border: none;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all .3s ease;
+        }
+
+        .button-register:hover{
+            background-color: rgb(4, 4, 145);
+        }
+
+    </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="style.css">
+	<title>Pengecekan Kepadatan Lalulintas</title>
+    {% load static %}
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="layout">
+                <div class="left-side">
+                    <img src="{% static 'lalulintas.jpg' %}" class="image">
+                </div>
+                <div class="right-side">
+                    <div class="form">
+                        <form class="form-register" method="post" action="{% url 'landing' %}">
+                            {% csrf_token %}
+                            <div class="form-input">
+                                <h1>Daftar</h1>
+
+                                <label for="">Nama</label>
+
+                                <div class="input-register">
+                                    <input type="text" name="" id="" autocomplete="off" required>
+                                </div>
+                            
+                                <label for="">Email</label>
+
+                                <div class="input-register">
+                                    <input type="text" name="" id="" autocomplete="off" required>
+                                </div>
+
+                                <label for="">Password</label>
+
+                                <div class="input-register">
+                                    <input type="password" name="" id="" autocomplete="off" required>
+                                </div>
+                                
+                                <div class="button-register-position">
+                                    <button class="button-register">
+                                        DAFTAR
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

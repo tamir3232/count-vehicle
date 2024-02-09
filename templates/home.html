@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}Pengecekan Kepadatan Lalu Lintas{% endblock %}
+
+{% block content %}
+	<div class="home">
+		<div class="container-title">
+			<h2>Pengecekan Kepadatan Lalu Lintas</h2>
+		</div>
+		<div class="home-position">
+			<div class="container-image">
+				<div class="image-input">
+					<img class="image-style" width="100%" height="400px" id="preview-image" src="data:image/png;base64,{{ image_data }}" alt="Preview Image">
+				</div>
+
+				<form action="test" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="img-area" data-img="">
+						<input type="file" id="upload-button" name="image" value="image">
+						<label for="upload-button">Pilih Gambar</label>
+					</div>
+					<button type="submit" class="button-image">Cek Kepadatan Lalu Lintas</button>
+				</form>
+			</div>
+
+			<div class="container">
+				<div class="container-total">
+					<div>
+						<h3>Jumlah Kendaraan</h3>
+					</div>
+					<div class="" style="height: 100%; justify-content: center; display: flex; align-items: center;">
+						{% if count >= 10 %}
+							<p style="font-size: 70px;">&gt; {{ count }}</p>
+						{% else %}
+							<p style="font-size: 70px;">{{ count }}</p>
+						{% endif %}
+					</div>
+				</div>
+				
+				<div class="container-total" style="margin-top: 30px;">
+					<div>
+						<h3>Kondisi Lalu Lintas</h3>
+					</div>
+					<div class="" style="height: 100%; justify-content: center; display: flex; align-items: center;">
+						<p class="select-image" id="predictionText" style="font-size: 30px; text-align: center; font-weight: 600;">{{ prediction }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script> var loadFile = function(event) {
+		var image = document.getElementById('output');
+		image.src = URL.createObjectURL(event.target.files[0]);
+	};</script>
+	<script src="script.js"></script>
+	<script>
+		var uploadButton = document.getElementById('upload-button');
+		var previewImage = document.getElementById('preview-image');
+	
+		uploadButton.addEventListener('change', function(event) {
+			var file = event.target.files[0];
+			var imageType = /image.*/;
+	
+			if (file.type.match(imageType)) {
+				var reader = new FileReader();
+	
+				reader.onload = function() {
+					previewImage.src = reader.result;
+				}
+	
+				reader.readAsDataURL(file);
+			}
+		});
+	</script>
+
+	<script src="script.js"></script>
+	<script>
+		// Ambil elemen dengan ID 'predictionText'
+		var predictionText = document.getElementById('predictionText');
+
+		// Ambil nilai prediction dari elemen
+		var predictionValue = predictionText.innerText.trim();
+
+		// Jika nilai prediction adalah 'PADAT', ubah warna teks menjadi merah
+		if (predictionValue === 'Padat') {
+			predictionText.style.backgroundColor = 'red';
+
+			predictionText.addEventListener('mouseover', function() {
+				predictionText.style.backgroundColor = 'rgb(177, 5, 5)';
+			});
+
+			predictionText.addEventListener('mouseout', function() {
+				predictionText.style.backgroundColor = 'red';
+			});
+		}
+
+		else if (predictionValue === 'Lancar') {
+			predictionText.style.backgroundColor = 'rgb(1, 189, 1)';
+
+			predictionText.addEventListener('mouseover', function() {
+				predictionText.style.backgroundColor = 'rgb(1, 145, 1)';
+			});
+
+			predictionText.addEventListener('mouseout', function() {
+				predictionText.style.backgroundColor = 'rgb(1, 189, 1)';
+			});
+		}
+	</script>
+{% endblock %}
+	
