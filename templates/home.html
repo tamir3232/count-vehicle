@@ -16,7 +16,7 @@
 				<form action="test" method="post" enctype="multipart/form-data">
 					{% csrf_token %}
 					<div class="img-area" data-img="">
-						<input type="file" id="upload-button" name="image" value="image">
+						<input type="file" id="upload-button" name="image" value="image" required>
 						<label for="upload-button">Pilih Gambar</label>
 					</div>
 					<button type="submit" class="button-image">Cek Kepadatan Lalu Lintas</button>

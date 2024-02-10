@@ -137,18 +137,21 @@
                         <form class="form-login" method="post" action="{% url 'base' %}">
                             {% csrf_token %}
                             <div class="form-input">
+                                {% if error_message %}
+                                    <p style="color: red;">{{ error_message }}</p>
+                                {% endif %}
                                 <h1>Login</h1>
                             
                                 <label for="">Email</label>
 
                                 <div class="input-login">
-                                    <input type="text" name="" id="" autocomplete="off" required>
+                                    <input type="text" name="username" id="" autocomplete="off" required>
                                 </div>
 
                                 <label for="">Password</label>
 
                                 <div class="input-login">
-                                    <input type="password" name="" id="" autocomplete="off" required>
+                                    <input type="password" name="password" id="" autocomplete="off" required>
                                 </div>
                                 
                                 <a href="{% url 'daftar' %}">Belum punya akun?</a>

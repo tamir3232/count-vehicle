@@ -121,7 +121,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<link rel="stylesheet" href="style.css">
 	<title>Pengecekan Kepadatan Lalulintas</title>
     {% load static %}
 </head>
@@ -138,23 +137,25 @@
                             {% csrf_token %}
                             <div class="form-input">
                                 <h1>Daftar</h1>
-
+                                {% if error_message %}
+                                    <p style="color: red;">{{ error_message }}</p>
+                                {% endif %}
                                 <label for="">Nama</label>
 
                                 <div class="input-register">
-                                    <input type="text" name="" id="" autocomplete="off" required>
+                                    <input type="text"  id="nama" name="nama" autocomplete="off" required>
                                 </div>
                             
-                                <label for="">Email</label>
+                                <label for="">username</label>
 
                                 <div class="input-register">
-                                    <input type="text" name="" id="" autocomplete="off" required>
+                                    <input type="text"  id="username" name="username" autocomplete="off" required>
                                 </div>
 
                                 <label for="">Password</label>
 
                                 <div class="input-register">
-                                    <input type="password" name="" id="" autocomplete="off" required>
+                                    <input type="password" name="password1" id="password1" autocomplete="off" required>
                                 </div>
                                 
                                 <div class="button-register-position">

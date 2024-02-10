@@ -24,8 +24,9 @@ from . import views
 urlpatterns = [
     path("",views.landing, name='landing'),
     path("daftar",views.daftar, name='daftar'),
-    path("base", lambda request: redirect('home'), name='base'),
+    path("base", views.base, name='base'),
     path("home",views.home, name='home'),
     path("history",views.history, name='history'),
     path('test',views.count),
+    path('logout',views.logoutt, name='logout'),
 ]

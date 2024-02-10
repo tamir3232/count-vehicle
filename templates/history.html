@@ -16,15 +16,17 @@
                             <th>No</th>
                             <th>Tanggal</th>
                             <th>Jam</th>
+                            <th>Jumlah Kendaraan</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for data in datas %}
                             <tr>
-                                <td>{{ data.No }}</td>
-                                <td>{{ data.Tanggal }}</td>
-                                <td>{{ data.Jam }}</td>
+                                <td>{{forloop.counter }}</td>
+                                <td>{{ data.Date }}</td>
+                                <td>{{ data.Time }}</td>
+                                <td>{{ data.count }}</td>
                                 <td>{{ data.Status }}</td>
                             </tr>
                         {% endfor %}
