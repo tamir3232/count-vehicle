@@ -34,6 +34,8 @@ def landing(request):
             return redirect('home')
         else:
             return render(request, 'landingpage.html')
+        
+    return render(request, 'landingpage.html')
     
    
 
@@ -65,7 +67,7 @@ def base(request):
         user = authenticate(request, username=username , password=password )
         if user is not None:
             login(request,user)
-            return render(request, 'home.html')
+            return redirect('home')
         else:
             error_message = "Username atau Password Salah"
             return render(request, 'landingpage.html', {'error_message': error_message})
