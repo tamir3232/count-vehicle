@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -10,7 +11,8 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
 
@@ -47,17 +49,17 @@
             height: 100%;
         }
 
-        .right-side{
+        .right-side {
             width: 50%;
             height: 100%;
         }
 
-        .left-side{
+        .left-side {
             width: 50%;
-            
+
         }
 
-        .form{
+        .form {
             width: 100%;
             height: 100%;
             display: flex;
@@ -65,11 +67,11 @@
             align-items: center;
         }
 
-        .form-login{
+        .form-login {
             padding: 20px;
         }
 
-        .form-login h1{
+        .form-login h1 {
             text-align: center;
         }
 
@@ -79,29 +81,29 @@
             margin-bottom: 15px;
         }
 
-        .input-login{
+        .input-login {
             margin-top: 20px;
             margin-bottom: 20px;
         }
 
-        .input-login input{
+        .input-login input {
             width: 100%;
             height: 35px;
             border-radius: 10px;
             padding: 0px 10px 0px 10px;
         }
 
-        .form-input a{
+        .form-input a {
             text-decoration: none;
         }
 
-        .button-login-position{
+        .button-login-position {
             display: flex;
             justify-content: center;
             margin-top: 35px;
         }
 
-        .button-login{
+        .button-login {
             width: 150px;
             height: 40px;
             border-radius: 10px;
@@ -113,18 +115,18 @@
             transition: all .3s ease;
         }
 
-        .button-login:hover{
+        .button-login:hover {
             background-color: rgb(4, 4, 145);
         }
-
     </style>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<link rel="stylesheet" href="style.css">
-	<title>Pengecekan Kepadatan Lalulintas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Pengecekan Kepadatan Lalulintas</title>
     {% load static %}
 </head>
+
 <body>
     <div class="container">
         <div class="content">
@@ -138,11 +140,11 @@
                             {% csrf_token %}
                             <div class="form-input">
                                 {% if error_message %}
-                                    <p style="color: red;">{{ error_message }}</p>
+                                <p style="color: red;">{{ error_message }}</p>
                                 {% endif %}
                                 <h1>Login</h1>
-                            
-                                <label for="">Email</label>
+
+                                <label for="">Username</label>
 
                                 <div class="input-login">
                                     <input type="text" name="username" id="" autocomplete="off" required>
@@ -153,9 +155,9 @@
                                 <div class="input-login">
                                     <input type="password" name="password" id="" autocomplete="off" required>
                                 </div>
-                                
+
                                 <a href="{% url 'daftar' %}">Belum punya akun?</a>
-                                
+
                                 <div class="button-login-position">
                                     <button class="button-login" type="submit">
                                         LOGIN
@@ -170,4 +172,5 @@
     </div>
 
 </body>
+
 </html>

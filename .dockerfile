@@ -5,10 +5,14 @@ FROM python:3.10.12
 WORKDIR /myproject
 
 # Copy the requirements file into the container
-COPY requirements.txt /myproject/
+COPY requirement.txt /myproject/
 
 # Install the required dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirement.txt
+
+RUN pip install opencv-python
+RUN apt-get update && apt-get -y install \
+    build-essential libgl1
 
 # Copy the rest of the Django app code to the container
 COPY . /myproject/
